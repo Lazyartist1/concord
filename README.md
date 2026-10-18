@@ -97,7 +97,7 @@ always-on instance with a local disk. It does not fit serverless hosts.
 no persistent disk: every account, upload and sign-off is erased when the service restarts or
 spins down after fifteen idle minutes. `CONCORD_EPHEMERAL=1` makes the dashboard say so on every
 page. For anything people should come back to, use a paid instance with a disk at `/data` (or
-Fly.io, or a VPS) and remove that variable.
+Fly.io, or [a VPS with systemd](./docs/deploy/systemd.md)) and remove that variable.
 
 Upgrading an existing instance, including how migrations run, taking a backup and rolling back, is
 covered in [`docs/upgrading.md`](./docs/upgrading.md).
