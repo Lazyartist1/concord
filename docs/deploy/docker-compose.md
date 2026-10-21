@@ -9,7 +9,7 @@ This guide walks through deploying Concord using Docker Compose for self-hosted 
 Concord is a single stateful Node.js service that runs the API, serves the dashboard, and manages an embedded SQLite database per workspace.
 
 When deployed in Docker:
-- **Persistent Volume:** All databases and runtime state live under `/data` (configured by `CONCORD_DATA_DIR=/data` in the [`Dockerfile`](file:///C:/Users/lenovo/wave-work/concord/Dockerfile)). A persistent named volume or host bind-mount must be attached to `/data`.
+- **Persistent Volume:** All databases and runtime state live under `/data` (configured by `CONCORD_DATA_DIR=/data` in the [`Dockerfile`](../../Dockerfile)). A persistent named volume or host bind-mount must be attached to `/data`.
 - **Internal Port:** Concord listens inside the container on port `4400` as the unprivileged `node` user.
 - **TLS Termination:** In production, run a reverse proxy (such as Caddy or Nginx) in front of Concord to terminate TLS and forward requests.
 
@@ -95,7 +95,7 @@ docker compose logs -f concord
 
 ## 5. Healthchecks
 
-The container healthcheck inspects `/api/health` ([`services/api/src/api.ts`](file:///C:/Users/lenovo/wave-work/concord/services/api/src/api.ts)):
+The container healthcheck inspects `/api/health` ([`services/api/src/api.ts`](../../services/api/src/api.ts)):
 ```bash
 docker inspect --format='{{json .State.Health}}' $(docker compose ps -q concord)
 ```
@@ -140,4 +140,4 @@ docker compose up -d --remove-orphans concord
 # 4. Verify startup and schema migrations
 docker compose logs --tail=50 concord
 ```
-Any schema migrations ([`services/api/src/schema.ts`](file:///C:/Users/lenovo/wave-work/concord/services/api/src/schema.ts)) execute automatically on startup when the database connections are opened.
+Any schema migrations ([`services/api/src/schema.ts`](../../services/api/src/schema.ts)) execute automatically on startup when the database connections are opened.
